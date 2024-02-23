@@ -1,3 +1,44 @@
 \section{Introduction}
 
 % TODO: intro
+
+Supermarkets, like any other business, needs to meticulously and careful plan out their business decisions because one wrong move could result in millions of losses in revenue. However, risky business decisions are what create the most capital, popularity, and overall growth of the company as these decisions create new avenues by attracting more customers or strengthen old ones. Risky business decisions does not always need to be a gamble, there are a lot of ways to turn it into a calculated risk; this would in turn allow a company to somewhat have an idea of their possible gains, loss, and approach to the risks. The most traditional method for calculating risks is from listening to the veterans of the business. However, there are now more effective ways to help business decisions with one leveraging data. Data and machine learning can help by providing models that predict the outcomes to an accurate level that would help in the approach of risky business decisions. 
+
+\subsection{Problem and Dataset}
+
+The lab exercise is provided a dataset that contains various personal information a customer. To be more specific the dataset contains the columns as shown in table \ref{tab:columns}
+
+The Response column will be the target of the machine learning models. To interpret, the goal of the machine learning models was to predict which customers accepted the offer in the last campaign. Doing so would give ABC Supermarkets an idea who might be willing to accept the offer of their year-end sale campaign for existing customers. 
+
+\begin{table}[H]
+    \caption{Table of the dataset attributes and their data type}
+    \label{tab:columns}
+    \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
+        \toprule
+        Column & Data type \\
+        \midrule
+        ID & int64\\
+        Year\_Birth & int64\\
+        Education & object\\
+        Marital\_Status & object\\
+        Kidhome & int64\\
+        Teenhome & int64\\
+        Dt\_Customer & object\\
+        Recency & int64\\
+        MntWines & int64\\
+        MntFruits & int64\\
+        MntMeatProducts & int64\\
+        MntFishProducts & int64\\
+        MntSweetProducts & int64\\
+        MntGoldProds & int64\\
+        NumDealsPurchases & int64\\
+        NumWebPurchases & int64\\
+        NumCatalogPurchases & int64\\
+        NumStorePurchases & int64\\
+        NumWebVisitsMonth & int64\\
+        Response & int64\\
+        Complain & int64\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
