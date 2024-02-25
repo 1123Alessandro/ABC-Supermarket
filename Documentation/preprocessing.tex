@@ -22,7 +22,7 @@
 
 2.2.2 Feature Engineering
 
-    2.2.2.1 Creating Total Children Feature. A new column called 'Total_children' was created by summing up the 'Kidhome' and 'Teenhome' columns. This new feature provides anothger information for the total number of children in each customer's household, which could help in understanding the purchasing behavior or creating new marketing strategies based on this new feature.
+    2.2.2.1 Creating Total Children Feature. A new column called 'Total_Children' was created by summing up the 'Kidhome' and 'Teenhome' columns. This new feature provides anothger information for the total number of children in each customer's household, which could help in understanding the purchasing behavior or creating new marketing strategies based on this new feature.
 
     2.2.2.2 Removing Unrealistic Customers based on Year of Birth. During the exploratory data analysis phase, a number of outliers in the 'Year_Birth' column was recognized, that is why the dataset was filtered to only include records where the column value is 1940 or later. This ensures a realistic age range for customers.
 
@@ -38,7 +38,7 @@
 
 2.2.5 Feature Selection. The objective was to construct a predictive model to classify customers who might purchase the new year-end sale offer based on variables that may have a direct or indirect impact. Through careful analysis, there are columns that were dropped, such as 'ID', 'Dt_Customer', 'Kidhome', and 'Teenhome'. 
 
-The 'ID' contains unique identifiers for each record which are typically irrelevant to the outcome of predictive models. The date when the customer joined have been used to derive new feature, 'Days_Since_Customer', therefore the original date is no longer necessary for the modelling. The columns 'Kidhome' and 'Teenhome' were used to create interaction features and new feature, 'Total_children'. Retaining these original columns might be redundant and could even introduce noise.
+The 'ID' contains unique identifiers for each record which are typically irrelevant to the outcome of predictive models. The date when the customer joined have been used to derive new feature, 'Days_Since_Customer', therefore the original date is no longer necessary for the modelling. The columns 'Kidhome' and 'Teenhome' were used to create interaction features and new feature, 'Total_Children'. Retaining these original columns might be redundant and could even introduce noise.
 
 Additionally, interaction features were introduced by  using one-hot encoded marital status and variables like 'Kidhome' and 'Teenhome'. Removing the original one-hot encoded columns can help in avoiding multicollinearity and potentially improve the performance of the models due to reduced dimensionality and complexity.
 
