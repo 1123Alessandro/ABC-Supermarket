@@ -60,9 +60,11 @@ According to the implemented Bernoulli Naive Bayes, the log probability of a 0 r
 When analyzing the log probability of a feature, the values imply the probability of a feature for a given class, i.e. $P(x_i \mid y)$. Just like the analysis of coefficients at the logistic regression and SVM models, there is too much features to be able to show them all. So, just as before, it is best to just look at the highest scoring (or alternatively, the lowest scoring) of the feature log probabilities.
 
 \begin{table}[H]
+    \caption{Top five highest feature probabilities for response 0}
+    \label{tab:nb top5 0}
     \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
         \toprule
-        Feature & $Log P(x_i \mid y)$ \\
+        Feature & $Log P(x_i \mid y=0)$ \\
         \midrule
         Year\_Birth & -0.624380 \\
         \midrule
@@ -76,6 +78,28 @@ When analyzing the log probability of a feature, the values imply the probabilit
         \bottomrule
     \end{tabularx}
 \end{table}
+
+\begin{table}[H]
+    \caption{Top five highest feature probabilities for response 1}
+    \label{tab:nb top5 1}
+    \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
+    \toprule
+     & 1 \\
+    \midrule
+    NumWebVisitsMonth \\ Days\_Since\_Customer & -0.148846 \\
+    \midrule
+    NumCatalogPurchases & -0.239230 \\
+    \midrule
+    Year\_Birth \\ NumCatalogPurchases & -0.239230 \\
+    \midrule
+    NumCatalogPurchases \\ Days\_Since\_Customer & -0.239230 \\
+    \midrule
+    NumCatalogPurchases \\ NumWebVisitsMonth & -0.252835 \\
+    \bottomrule
+    \end{tabularx}
+\end{table}
+
+Table \ref{tab:nb top5 0} shows that someones year of birth and combined it with the recency of purchases, as well as the amount of catalog purchases with their length as a customer, it determines that they will likely not accept. Note however that these are continuous variables, hence these probabilities behave more like distributions. On the other hand, for people who did respond, their visits at the website combined with their days as a customer, as well as their catalog purchases which can be combined with their year of birth days as a customer and visits at the website last month determine if they will accept the offer (see table \ref{tab:nb top5 1})
 
 \subsection{Decision Trees}
 
