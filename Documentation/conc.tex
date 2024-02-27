@@ -1,3 +1,10 @@
 \section{Conclusion}
 
 % TODO: conc
+Overall the models have had similarities but at the same time differences when it comes to factoring in which inputs to give importance to and which do not have that much influence. Throughout the experimentation, linear regression and SVM models seem to lean more on classifying a customer based on their marital status, number of children at home, as well as what kind of product they buy at the supermarket. While for naive bayes, the the amount and frequency of purchases, combined with their birth year and time as a customer play much of a part than the others.
+
+The decision tree's first decisions were to focus on income, purchases, and recency of purchases. But eventually, the final decision comes down to what type of product do they purchase, income, and your education. 
+
+All these models leverage data in very differing ways because each model is different, there is no one way to learn something and it shows in these models especially highlighted by the fact that they compute data differently. Or alternatively, perhaps the models are not as consistent as they should be because of their performances that could stand to be improved. But nonetheless, even at this current state, these models already coincide in some things.
+
+It would be a good recommendation to improve training. It could be done by introducing more preprocessing techniques such as overampling, more feature engineering, etc. Additionally, features and preprocessing methods can be catered to each model.
