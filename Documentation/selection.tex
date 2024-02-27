@@ -143,3 +143,21 @@ The hyperparameters adjusted were too many to be shown in a table. To be succinc
         \bottomrule
     \end{tabularx}
 \end{table}
+
+Overall the performance of the models are summarized by table \ref{tab:summary}. 
+
+\begin{table}[H]
+    \caption{Summary table of the scores of the best models chosen by grid search}
+    \label{tab:summary}
+    \begin{tabularx}{\linewidth}{l|>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+         & Accuracy & Precision & Recall & F1 & {\small ROC AUC} \\
+        \midrule
+        LR & 0.899 & 0.475 & 0.389 & 0.414 & 0.771 \\
+        SVM & 0.875 & 0.365 & 0.433 & 0.393 & 0.752 \\
+        NB & 0.794 & 0.249 & 0.589 & 0.348 & 0.802 \\
+        DT & 0.885 & 0.410 & 0.400 & 0.431 & 0.676 \\
+        KNN & 0.884 & 0.348 & 0.267 & 0.298 & 0.629 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
