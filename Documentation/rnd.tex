@@ -5,6 +5,13 @@ Due to the nature of the experimentation, there are five versions each implement
 
 \subsection{Logistic Regression results}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/log_confu.png}
+    \caption{Confusion Matrix of Logistic Regression}
+    \label{fig:tts cv}
+\end{figure}
+
 Due to the polynomial features, there were 465 columns fed into the models, because of this, it's best to instead take note of the most significant coefficients from the model. Looking at table \ref{tab:lr top5 coef}, it can be observed that the most significant features are all interaction features.
 
 \begin{table}[H]
@@ -31,6 +38,13 @@ It is observed that people who bought fruits and are married with a kid at home 
 
 \subsection{SVM}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/svm_confu.png}
+    \caption{Confusion Matrix of SVM}
+    \label{fig:tts cv}
+\end{figure}
+
 Since the best model tested in the SVC models is a linear model, it can be interpreted that the coefficients to understand how the model has learned. Table \ref{tab:svm top5 coef} shows a lot of similarity with the top five coefficients of the linear regression model. 
 
 \begin{table}[H]
@@ -54,6 +68,13 @@ As it turns out, the support vector machine model's top five coefficients has tw
 It is a bit difficult to interpret the support vectors found by the SVM. Mainly because any aggregation to these found support vectors are only slightly different to the aggregations found in the original dataset. For example, the average \texttt{Year\_Birth} for the dataset is 1970.325371 while the average for the support vectors is 1970.030303; this is reflected to the other attributes even with different aggregation methods, whether it is the average, standard deviation, etc. the results only vary by a few units. This could be explained by the idea that maybe much of the data points are closer to decision boundary than expected. According to the model there are a total of 198 support vectors found in the dataset; 131 for no responses, and 67 for the responses. To put into perspective, out of the total 971 entries in the training set, 131 are support vectors, that is about 20.3\% of the training set. 
 
 \subsection{Naive Bayes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/naive_confu.png}
+    \caption{Confusion Matrix of Naives Bayes}
+    \label{fig:tts cv}
+\end{figure}
 
 According to the implemented Bernoulli Naive Bayes, the log probability of a 0 response (not accepted) is -0.09726884, while a 1 response (accepted the offer) is -2.3785168. This means that the chance of accepting the offer is much lower in probability compared to rejecting it which would make sense given there is a heavy imbalance in the dataset where 1101 responses are 0 while only 113 entries have a response of 1.
 
@@ -105,6 +126,13 @@ Table \ref{tab:nb top5 0} shows that someones year of birth and combined it with
 
 \begin{figure}[H]
     \centering
+    \includegraphics[width=\linewidth]{figures/dec_confu.png}
+    \caption{Confusion Matrix of Decision Trees}
+    \label{fig:tts cv}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
     \includegraphics[width=\linewidth]{figures/decision_tree.png}
     \caption{Illustration of Decision Tree}
     \label{fig:tts cv}
@@ -115,3 +143,10 @@ In the decision tree, the root node splits on the feature of \texttt{Recency Tot
 Moreover, the left child node, \texttt{NumDealsPurchases NumWebVisitsMonth <= 1.121}, and right child node, \texttt{Year\_Birth Days\_Since\_Customer <= 0.818} further splits the data to represent more classes to predict the value of target variable. These child nodes highlight the importance of the number of deals and website visits, and the customer's age and days since they first became a customer in predicting their response.
 
 \subsection{K-Nearest Neighbor}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/kn_confu.png}
+    \caption{Confusion Matrix of K-Nearest Neighbors}
+    \label{fig:tts cv}
+\end{figure}
