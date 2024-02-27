@@ -4,7 +4,7 @@ To select which models would perform the best with a specific set of hyperparame
 
 \subsubsection{Train-test-split and Cross-validation}
 
-Before cross-validation, a standard Train-Test-Split needs to prepend the sampling process. Consider the following sample of a simple k-fold cross-validation with a split of 5. The indices of the entries is within the range $[0, 100)$. table \ref{tab:kfold} shows the range of indices that would be within each fold:
+Before cross-validation, a standard Train-Test-Split needs to prepend the sampling process. Consider the following example of simple k-fold cross-validation with 5 splits. The indices of the entries are within the range $[0, 100)$. table \ref{tab:kfold} shows the range of indices that would be within each fold:
 
 \begin{table}[H]
     \caption{A simple example of a k-fold cross validation with a split/fold of 5 where the train and test columns show the index range of each set}
@@ -24,7 +24,7 @@ Before cross-validation, a standard Train-Test-Split needs to prepend the sampli
 
 While there are training and testing samples, they simply go on rotation for each fold. This would in turn feed the model all of the samples and train with all of them, this is something to take caution especially for grid search algorithms. For a grid search algorithm to be able to determine the best hyperparameters, it would need to perform a cross validation algorithm with each possible combination of hyperparameters. If the model would be trained and evaluated on all of the dataset, there is a sort of "leak" due to the hyperparameters actually being catered to what's best even for the testing data. For testing or predictions to be valid, it must be unbiased, and the best way to make sure of this is to make sure that the models never see the testing set that will be used to evaluate the models' performance. 
 
-Hence, the traditional \texttt{train\_test\_split} algorithm was implemented. The algorithm would then train and evaluate itself by splitting the training the dataset into smaller subsets of training and evaluating data. Refer to figure \ref{fig:tts cv} for a simpler diagram of the split including the traditional \texttt{train\_test\_split} before the cross-validation (figure taken from \href{https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation}{{\color{blue} scikit-learn page}}).
+Hence, the traditional \texttt{train\_test\_split} algorithm was implemented. The algorithm would then train and evaluate itself by splitting the training of the dataset into smaller subsets of training and evaluating data. Refer to figure \ref{fig:tts cv} for a diagram illustrating the split, including the traditional \texttt{train\_test\_split} before the cross-validation (figure taken from \href{https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation}{{\color{blue} scikit-learn page}}).
 
 \begin{figure}[H]
     \centering

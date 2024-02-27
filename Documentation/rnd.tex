@@ -1,11 +1,11 @@
 \section{Results and Discussion}
 
 % TODO: RnD
-Due to the nature of the experimentation, for each machine learning model that has been implemented there are 5 versions each with different hyperparameters. However for the interpretation and discussion of results, only the best performing model are taken into consideration. 
+Due to the nature of the experimentation, there are five versions each implemented machine learning model, each with different hyperparameters. However, for the interpretation and discussion of results, only the best performing model are taken into consideration. 
 
 \subsection{Logistic Regression results}
 
-Due to the polynomial features, there were 465 columns fed into the models, because of this, it's best to instead take note of the most significant coefficients from the model. Looking at table \ref{tab:lr top5 coef}, We can see that the most significant features are all interaction features
+Due to the polynomial features, there were 465 columns fed into the models, because of this, it's best to instead take note of the most significant coefficients from the model. Looking at table \ref{tab:lr top5 coef}, it can be observed that the most significant features are all interaction features.
 
 \begin{table}[H]
     \caption{Top 5 Features in the logistic regression model}
@@ -27,11 +27,11 @@ Due to the polynomial features, there were 465 columns fed into the models, beca
     \end{tabularx}
 \end{table}
 
-It is observable that people who bought fruits, are married, with a kid at home, are very likely to respond and accept the offer. The likeliness to accept the offer can also be seen with married people with a teen at home where they also bought meat products in the last two years, people that live with someone (\texttt{Together} marital status value) that buys wines with a teen at home, single people who achieved masters education with a kid at home, as well as people who bought wines in the last two years that also bought products at the company's website.
+It is observed that people who bought fruits and are married with a kid at home are very likely to respond and accept the offer. The likeliness to accept the offer can also be seen with married people with a teen at home who also bought meat products in the last two years, people that live with someone (\texttt{Together} marital status value) that buys wines with a teen at home, single people who achieved masters education with a kid at home, as well as people who bought wines in the last two years that also bought products at the company's website.
 
 \subsection{SVM}
 
-Since the best model tested in the SVC models is a linear model, we can interpret the coefficients to understand how the model has learned. Table \ref{tab:svm top5 coef} shows a lot of similarity with the top five coefficients of the linear regression model. 
+Since the best model tested in the SVC models is a linear model, it can be interpreted that the coefficients to understand how the model has learned. Table \ref{tab:svm top5 coef} shows a lot of similarity with the top five coefficients of the linear regression model. 
 
 \begin{table}[H]
     \caption{Top 5 features in the SVM model}

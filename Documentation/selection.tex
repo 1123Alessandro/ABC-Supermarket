@@ -4,7 +4,7 @@ Using the \texttt{GridSearchCV}, it selects which set of hyperparameters works b
 
 \subsubsection{Logistic Regression}
 
-The logistic regression is the simplest model out of all of them as a classifier, table \ref{tab:lr cv} shows the performance for each combination of hyperparameters. The hyperparameters are just different numbers of iterations done for the solvers to converge. 
+The Logistic Regression is the simplest model out of all of them as a classifier, table \ref{tab:lr cv} shows the performance for each combination of hyperparameters. The hyperparameters are just different numbers of iterations done for the solvers to converge. 
 
 \begin{table}[H]
     \caption{Logistic Regression cross-validation mean test scores for each hyperparameter}
@@ -25,11 +25,11 @@ The logistic regression is the simplest model out of all of them as a classifier
     \end{tabularx}
 \end{table}
 
-The learning performance of the model peaks and remains stagnant after that. It can be seen that even if the iterations are already as far as 5000 iterations, the scores remain the same. The learning curve of this model peaks around 100. 
+The learning performance of the model peaks and remains stagnant after that. It can be observed that even if the iterations are already as far as 5000 iterations, the scores remain the same. The learning curve of this model peaks around 100. 
 
 \subsubsection{SVM}
 
-Table \ref{tab:svc cv} shows the performance of the C-Support Vector Classification models. Note that for linear kernels, the gamma hyperparameter would not need to come into play. But the results show that the best performing model is the one with a linear kernel
+Table \ref{tab:svc cv} shows the performance of the C-Support Vector Classification models. Note that for linear kernels, the gamma hyperparameter would not need to come into play. But the results show that the best performing model is the one with a linear kernel.
 
 \begin{table}[H]
     \caption{C-Support Vector Classification models cross-validation mean test scores for each hyperparameter subset}
@@ -52,7 +52,7 @@ Table \ref{tab:svc cv} shows the performance of the C-Support Vector Classificat
 
 \subsubsection{Naive Bayes}
 
-A Bernoulli naive bayes classifier, was used as a model for the dataset, table \ref{tab:bnb cv} shows the difference for each set of hyperparameter. An alpha of 7 with a fit prior of True seem to be the best model so far. However looking at the data, for tests with the same value in \texttt{alpha} and \texttt{fit\_prior} that is true, they tend to score higher with their counterparts with the same value in \texttt{alpha} but with a \texttt{fit\_prior} of false.
+A Bernoulli Naive Bayes Classifier, was used as a model for the dataset, table \ref{tab:bnb cv} shows the difference for each set of hyperparameter. An alpha of 7 with a fit prior of \texttt{True} seem to be the best model so far. However, when looking at the data for tests with the same value in \texttt{alpha} and \texttt{fit\_prior} that is true, they tend to score higher with their counterparts with the same value in \texttt{alpha} but with a \texttt{fit\_prior} of false.
 
 \begin{table}[H]
     \caption{Bernoulli cross-validation test scores for each hyperparameter subset}
@@ -75,7 +75,7 @@ A Bernoulli naive bayes classifier, was used as a model for the dataset, table \
     \end{tabularx}
 \end{table}
 
-There is another alternative to bernoullli naive bayes which is the gaussian naive bayes classifier. However the distance between the precision and recall score are too far apart (refer to table \ref{tab:bnb vs gnb}). 
+There is another alternative to Bernoulli Naive Bayes which is the Gaussian Naive Bayes Classifier. However the distance between the precision and recall score are too far apart (refer to table \ref{tab:bnb vs gnb}). 
 
 \begin{table}[H]
     \caption{Comparison of Bernoulli NB with Gaussian NB}
@@ -93,7 +93,7 @@ There is another alternative to bernoullli naive bayes which is the gaussian nai
 \newpage
 \subsubsection{Decision Tree}
 
-For decision trees, table \ref{tab:dt cv} ranks that a log loss criterion with a standard min samples split of 2 all the while choosing the best split gives us the most optimal version of a decision tree classifier. However, the the decision tree model that uses the entropy criterion isn't too far behind.
+For Decision Trees, table \ref{tab:dt cv} ranks that a log loss criterion with a standard min samples split of 2 all the while choosing the best split gives us the most optimal version of a Decision Tree Classifier. However, the the Decision Tree model that uses the entropy criterion isn't too far behind.
 
 \begin{table}[H]
     \caption{Decision tree cross-validation test scores for each hyperparameter subset}
