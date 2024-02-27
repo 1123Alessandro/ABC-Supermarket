@@ -20,7 +20,7 @@
     \centering
     \includegraphics[width=\linewidth]{figures/removing_outliers.png}
     \caption{Removing Outliers}
-    \label{fig:income hist}
+    % \label{fig:income hist}
 \end{figure}
 
     By applying this algorithm, it ensures that the analysis is not skewed by extreme values, leading to more accurate results and improves the quality of the models.
@@ -47,7 +47,7 @@ Columns \texttt{Education} and \texttt{Marital\_Status} are categorical values. 
 
 Given the statistical evidence from the ANOVA test - F = 2.815 for \texttt{Kidhome} and F = 4.461 for \texttt{Teenhome}, with p-values well below the 0.05 significance level - during the explroatory data analysis phase, the results shows strong evidence that \texttt{Marital\_Status} significantly impacts the number of children and teenagers in a household. This suggests that marital status may interact with household composition that may provide a meaningful impact on the model. To quanitify these relationship, interaction features were created by multiplying each one-hot encoded marital status column by \texttt{Kidhome} and \texttt{Teenhome} to create new interaction columns. These interaction features can potentially imrpove the performance of the models. They allow models to provide deeper insights on how households interact with the customers' marital status.
 
-There were discontinued approaches using interaction feature between \texttt{Total_Children} and one-hot encoded \texttt{Marital_Status} because during the exploratory data analysis phase, 
+There were discontinued approaches using interaction feature between \texttt{Total\_Children} and one-hot encoded \texttt{Marital\_Status} because during the exploratory data analysis phase,
 
 \subsubsection{Feature Selection}
 
