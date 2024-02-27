@@ -1,0 +1,145 @@
+\subsection{Model Selection}
+
+Using the \texttt{GridSearchCV}, it selects which set of hyperparameters works best on a model by training it with a cross-validation technique, but as mentioned earlier, only on the training data set. Note that for all of the grid search runs of each model, an f1 scoring system was used as the metric for measuring performance
+
+\subsubsection{Logistic Regression}
+
+The logistic regression is the simplest model out of all of them as a classifier, table \ref{tab:lr cv} shows the performance for each combination of hyperparameters. The hyperparameters are just different numbers of iterations done for the solvers to converge. 
+
+\begin{table}[H]
+    \caption{Logistic Regression cross-validation mean test scores for each hyperparameter}
+    \label{tab:lr cv}
+    \begin{tabularx}{\linewidth}{>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        param\_max\_iter & mean\_test\_score & rank\_test\_score \\
+        \midrule
+        50 & 0.399988 & 8 \\
+        70 & 0.400451 & 7 \\
+        100 & 0.413567 & 1 \\
+        200 & 0.413567 & 1 \\
+        500 & 0.413567 & 1 \\
+        1000 & 0.413567 & 1 \\
+        2000 & 0.413567 & 1 \\
+        5000 & 0.413567 & 1 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+The learning performance of the model peaks and remains stagnant after that. It can be seen that even if the iterations are already as far as 5000 iterations, the scores remain the same. The learning curve of this model peaks around 100. 
+
+\subsubsection{SVM}
+
+Table \ref{tab:svc cv} shows the performance of the C-Support Vector Classification models. Note that for linear kernels, the gamma hyperparameter would not need to come into play. But the results show that the best performing model is the one with a linear kernel
+
+\begin{table}[H]
+    \caption{C-Support Vector Classification models cross-validation mean test scores for each hyperparameter subset}
+    \label{tab:svc cv}
+    \begin{tabularx}{\linewidth}{>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        gamma & kernel & mean\_test & rank\_test\\
+        \midrule
+        & linear & 0.393174 & 1 \\
+        scale & poly & 0.000000 & 4 \\
+        scale & rbf & 0.000000 & 4 \\
+        scale & sigmoid & 0.000000 & 4 \\
+        & linear & 0.393174 & 1 \\
+        auto & poly & 0.080769 & 3 \\
+        auto & rbf & 0.000000 & 4 \\
+        auto & sigmoid & 0.000000 & 4 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsubsection{Naive Bayes}
+
+A Bernoulli naive bayes classifier, was used as a model for the dataset, table \ref{tab:bnb cv} shows the difference for each set of hyperparameter. An alpha of 7 with a fit prior of True seem to be the best model so far. However looking at the data, for tests with the same value in \texttt{alpha} and \texttt{fit\_prior} that is true, they tend to score higher with their counterparts with the same value in \texttt{alpha} but with a \texttt{fit\_prior} of false.
+
+\begin{table}[H]
+    \caption{Bernoulli cross-validation test scores for each hyperparameter subset}
+    \label{tab:bnb cv}
+    \begin{tabularx}{\linewidth}{>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        alpha & fit\_prior & mean\_test & rank\_test \\
+        \midrule
+        1 & True & 0.321885 & 7 \\
+        1 & False & 0.333608 & 4 \\
+        2 & True & 0.326748 & 5 \\
+        2 & False & 0.323729 & 6 \\
+        5 & True & 0.337983 & 3 \\
+        5 & False & 0.318559 & 9 \\
+        7 & True & 0.345290 & 1 \\
+        7 & False & 0.305031 & 10 \\
+        10 & True & 0.339318 & 2 \\
+        10 & False & 0.319661 & 8 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+There is another alternative to bernoullli naive bayes which is the gaussian naive bayes classifier. However the distance between the precision and recall score are too far apart (refer to table \ref{tab:bnb vs gnb}). 
+
+\begin{table}[H]
+    \caption{Comparison of Bernoulli NB with Gaussian NB}
+    \label{tab:bnb vs gnb}
+    \begin{tabularx}{\linewidth}{l|>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        & Accuracy & Precision & ROC AUC & Recall \\
+        \midrule
+        Bernoulli & 0.345290 & 0.248854 & 0.787395 & 0.577778 \\
+        Gaussian & 0.171189 & 0.096033 & 0.536592 & 0.788889 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\newpage
+\subsubsection{Decision Tree}
+
+For decision trees, table \ref{tab:dt cv} ranks that a log loss criterion with a standard min samples split of 2 all the while choosing the best split gives us the most optimal version of a decision tree classifier. However, the the decision tree model that uses the entropy criterion isn't too far behind.
+
+\begin{table}[H]
+    \caption{Decision tree cross-validation test scores for each hyperparameter subset}
+    \label{tab:dt cv}
+    \begin{tabularx}{\linewidth}{>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        criterion & min samples split & splitter & mean\_test & rank\_test \\
+        \midrule
+        gini & 2 & best & 0.371697 & 11 \\
+        gini & 2 & random & 0.346724 & 14 \\
+        gini & 5 & best & 0.309233 & 18 \\
+        gini & 5 & random & 0.373470 & 9 \\
+        gini & 10 & best & 0.329160 & 15 \\
+        gini & 10 & random & 0.378374 & 8 \\
+        entropy & 2 & best & 0.385656 & 7 \\
+        entropy & 2 & random & 0.372491 & 10 \\
+        entropy & 5 & best & 0.415986 & 2 \\
+        entropy & 5 & random & 0.317867 & 17 \\
+        entropy & 10 & best & 0.391090 & 4 \\
+        entropy & 10 & random & 0.361705 & 13 \\
+        log\_loss & 2 & best & 0.416715 & 1 \\
+        log\_loss & 2 & random & 0.388316 & 6 \\
+        log\_loss & 5 & best & 0.390513 & 5 \\
+        log\_loss & 5 & random & 0.365806 & 12 \\
+        log\_loss & 10 & best & 0.399050 & 3 \\
+        log\_loss & 10 & random & 0.324862 & 16 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsubsection{K-Nearest Neighbor}
+
+The hyperparameters adjusted were too many to be shown in a table. To be succinct table \ref{tab:knn top5} only shows the top 5 from the trials. The results show that regardless of the algorithm, whether it was a brute force search, a KDTree, or BallTree, or even if the model decides for itself which to use, The results remain the same so long as the number of neighbors is just 2 and the distance weight function is implemented.
+
+\begin{table}[H]
+    \caption{K-Nearest Neighbors cross-validation top 5 mean test scores}
+    \label{tab:knn top5}
+    \begin{tabularx}{\linewidth}{>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering\arraybackslash}X}
+        \toprule
+        algorithm & n\_neighbors & weights & mean\_test & rank\_test \\
+        \midrule
+        auto & 2 & distance & 0.297903 & 1 \\
+        brute & 2 & distance & 0.297903 & 1 \\
+        ball\_tree & 2 & distance & 0.297903 & 1 \\
+        kd\_tree & 2 & distance & 0.297903 & 1 \\
+        auto & 1 & uniform & 0.296767 & 5 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
