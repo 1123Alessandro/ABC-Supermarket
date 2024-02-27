@@ -79,4 +79,15 @@ When analyzing the log probability of a feature, the values imply the probabilit
 
 \subsection{Decision Trees}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/decision_tree.png}
+    \caption{Illustration of Decision Tree}
+    \label{fig:tts cv}
+\end{figure}
+
+In the decision tree, the root node splits on the feature of \texttt{Recency Total_Children <= -0.664}. This indicates that the combination of these features is important in predicting the target variable, and uses the value of -0.664 as a threshold to give a two possible outcomes, considering that the features were standardized during preprocessing. If the condition is less than or equal to -0.664, then the left branch is taken; otherwise the right branch is taken. It implies that recency and number of children in the household are signifcanty factors in predicting customer response. 
+
+Moreover, the left child node, \textt{NumDealsPurchases NumWebVisitsMonth <= 1.121}, and right child node, \textt{Year_Birth Days_Since_Customer <= 0.818} further splits the data to represent more classes to predict the value of target variable. These child nodes highlight the importance of the number of deals and website visits, and the customer's age and days since they first became a customer in predicting their response.
+
 \subsection{K-Nearest Neighbor}
