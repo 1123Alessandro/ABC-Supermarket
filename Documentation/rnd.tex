@@ -1,3 +1,62 @@
 \section{Results and Discussion}
 
 % TODO: RnD
+Due to the nature of the experimentation, for each machine learning model that has been implemented there are 5 versions each with different hyperparameters. However for the interpretation and discussion of results, only the best performing model are taken into consideration. 
+
+\subsection{Logistic Regression results}
+
+Due to the polynomial features, there were 465 columns fed into the models, because of this, it's best to instead take note of the most significant coefficients from the model. Looking at table \ref{tab:lr top5 coef}, We can see that the most significant features are all interaction features
+
+\begin{table}[H]
+    \caption{Top 5 Features in the logistic regression model}
+    \label{tab:lr top5 coef}
+    \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
+        \toprule
+        Feature & Value \\
+        \midrule
+        MntFruits \\ A\_Marital\_Status\_Single\_Kidhome & 0.979750 \\
+        \midrule
+        MntMeatProducts \\ A\_Marital\_Status\_Married\_Teenhome & 0.952025 \\
+        \midrule
+        MntWines \\ A\_Marital\_Status\_Together\_Teenhome & 0.844306 \\
+        \midrule
+        Education\_Master \\ A\_Marital\_Status\_Single\_Kidhome & 0.814164 \\
+        \midrule
+        MntWines \\ NumWebPurchases & 0.763514 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+It is observable that people who bought fruits, are married, with a kid at home, are very likely to respond and accept the offer. The likeliness to accept the offer can also be seen with married people with a teen at home where they also bought meat products in the last two years, people that live with someone (\texttt{Together} marital status value) that buys wines with a teen at home, single people who achieved masters education with a kid at home, as well as people who bought wines in the last two years that also bought products at the company's website.
+
+\subsection{SVM}
+
+Since the best model tested in the SVC models is a linear model, we can interpret the coefficients to understand how the model has learned. Table \ref{tab:svm top5 coef} shows a lot of similarity with the top five coefficients of the linear regression model. 
+
+\begin{table}[H]
+    \caption{Top 5 features in the SVM model}
+    \label{tab:svm top5 coef}
+    \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
+        \toprule
+        Feature & Value \\
+        \midrule
+        MntFruits \\ A\_Marital\_Status\_Single\_Kidhome & 0.845264 \\
+        \midrule
+        MntWines NumWebPurchases & 0.762868 \\
+        \midrule
+        NumWebVisitsMonth \\ A\_Marital\_Status\_Single\_Kidhome & 0.702270 \\
+        \midrule
+        MntSweetProducts \\ A\_Marital\_Status\_Together\_Kidhome & 0.678876 \\
+        \midrule
+        MntMeatProducts \\ A\_Marital\_Status\_Married\_Teenhome & 0.670549 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+As it turns out, the 
+
+\subsection{Naive Bayes}
+
+\subsection{Decision Trees}
+
+\subsection{K-Nearest Neighbor}
