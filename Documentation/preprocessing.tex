@@ -2,19 +2,19 @@
 
 \subsubsection{Data Cleaning} 
 
-    3.2.1.1 Handling null values. During the preprocessing phase, one of the important steps to was to address the null values, particularly within the \texttt{Income} column. Several solutions were considered for dealing with the null values in this column. 
+    3.2.1.1 Handling null values. During the preprocessing phase, one of the important steps was to address the null values, particularly within the \texttt{Income} column. Several solutions were considered for dealing with the null values in this column. 
 
-    First, it was proposed to fill null values with the median of their respective groups. This method imputes missing values with the meadian income of similar groups based on other features, such as \texttt{Education} or \texttt{Marital\_Status}. But after examining the relationship between \texttt{Income} and these categorical variables, we observed weak correlations:
+    First, it was proposed to fill null values with the median of their respective groups. This method imputes missing values with the median income of similar groups based on other features, such as \texttt{Education} or \texttt{Marital\_Status}. But after examining the relationship between \texttt{Income} and these categorical variables, we observed weak correlations:
         - For \texttt{Education} levels, the correlation coefficients ranged from -0.200576 to 0.081552 which indicate a weak relationship between these features.
         - Similarly, for \texttt{Marital\_Status}, the correlation coefficients ranged from -0.025843 to 0.0031706, also suggesting a weak relationship between these features.
 
-    Given these weak correlations, imputing null values based on the meadian of their respective groups might not provide a meaninful impact on the models. It may also introduce inaccuracies into the dataset because neither \texttt{Education} nor \texttt{Marital Status} strongly predict \texttt{Income}. After testing this approach, the F1 scores of Logistic Regression, SVM, Decision Trees, and K-Nearest Neighbors significantly decreased with 0.045786, 0.04433, 0.149474, and 0.099193, respectively, less in scores.
+    Given these weak correlations, imputing null values based on the meadian of their respective groups might not provide a meaningful impact on the models. It may also introduce inaccuracies into the dataset because neither \texttt{Education} nor \texttt{Marital Status} strongly predict \texttt{Income}. After testing this approach, the F1 scores of Logistic Regression, SVM, Decision Trees, and K-Nearest Neighbors significantly decreased with 0.045786, 0.04433, 0.149474, and 0.099193, respectively, less in scores.
 
-    Second, another approach for these missing \texttt{Income} values was to fill it with 0. This method can be justified if a null value represents customers; lack of income. However, this assumption is generally not accurate for most of the datasets. It could significantly skew the data distribution and inflate the count of customers' with zero income. Therefore, filling null values with zero was viewed as not optimal due to its potential to misrepresent the information of the customers in the dataset. The only model that decreased in F1 score using this approach is the Decision Tree which resulted in 0.036149 less in score.
+    Second, another approach for these missing \texttt{Income} values was to fill it with 0. This method can be justified if a null value represents customers' lack of income. However, this assumption is generally not accurate for most of the datasets. It could significantly skew the data distribution and inflate the count of customers' with zero income. Therefore, filling null values with zero was viewed as not optimal due to its potential to misrepresent the information of the customers in the dataset. The only model that decreased in F1 score using this approach is the Decision Tree which resulted in 0.036149 less in score.
 
     Lastly, given the drawbacks of the first two approaches, it was decided to remove rows with null values. This decision was made by considering the analysis done in the features and preserving the integrity of the data. Although this approach may result in a smaller dataset, it ensures that reliability and complete information, which reduces the potential for skewed results and maintain data quality.
 
-    3.2.1.2 Handling Outliers. Outliers were observed within the \texttt{Income}, \texttt{Mnt.*}, and \texttt{Num.*} columns during the exploratory data analysis phase. Visualization tools, such as kernal density estimate and scatter plots, indicated the presence of extreme values that could potentially affect the modelling. The following algorithm for removing outliers on continuous variables was implemented:
+    3.2.1.2 Handling Outliers. Outliers were observed within the \texttt{Income}, \texttt{Mnt.*}, and \texttt{Num.*} columns during the exploratory data analysis phase. Visualization tools, such as kernel density estimate and scatter plots, indicated the presence of extreme values that could potentially affect the modelling. The following algorithm for removing outliers on continuous variables was implemented:
 
 \begin{figure}[H]
     \centering
@@ -23,11 +23,11 @@
     % \label{fig:income hist}
 \end{figure}
 
-    By applying this algorithm, it ensures that the analysis is not skewed by extreme values, leading to more accurate results and improves the quality of the models.
+    Applying this algorithms ensures that the analysis is not skewed by extreme values, leading to more accurate results and improves the quality of the models.
 
 \subsubsection{Feature Engineering}
 
-    3.2.2.1 Creating Total Children Feature. A new column called \texttt{Total\_Children} was created by summing up the \texttt{Kidhome} and \texttt{Teenhome} columns. This new feature provides anothger information for the total number of children in each customer's household, which could help in understanding the purchasing behavior or creating new marketing strategies based on this new feature.
+    3.2.2.1 Creating Total Children Feature. A new column called \texttt{Total\_Children} was created by summing up the \texttt{Kidhome} and \texttt{Teenhome} columns. This new feature provides another information for the total number of children in each customer's household, which could help in understanding the purchasing behavior or creating new marketing strategies based on this new feature.
 
     3.2.2.2 Removing Unrealistic Customers based on Year of Birth. During the exploratory data analysis phase, a number of outliers in the \texttt{Year\_Birth} column was recognized, that is why the dataset was filtered to only include records where the column value is 1940 or later. This ensures a realistic age range for customers.
 
@@ -53,13 +53,13 @@ There were discontinued approaches using interaction feature between \texttt{Tot
 
 The objective was to construct a predictive model to classify customers who might purchase the new year-end sale offer based on variables that may have a direct or indirect impact. Through careful analysis, there are columns that were dropped, such as \texttt{ID}, \texttt{Dt\_Customer}, \texttt{Kidhome}, and \texttt{Teenhome}. 
 
-The \texttt{ID} contains unique identifiers for each record which are typically irrelevant to the outcome of predictive models. The date when the customer joined have been used to derive new feature, \texttt{Days\_Since\_Customer}, therefore the original date is no longer necessary for the modelling. The columns \texttt{Kidhome} and \texttt{Teenhome} were used to create interaction features and new feature, \texttt{Total\_Children}. Retaining these original columns might be redundant and could even introduce noise.
+The \texttt{ID} contains unique identifiers for each record which are typically irrelevant to the outcome of predictive models. The date when the customer joined has been used to derive new feature, \texttt{Days\_Since\_Customer}, therefore the original date is no longer necessary for the modelling. The columns \texttt{Kidhome} and \texttt{Teenhome} were used to create interaction features and new feature, \texttt{Total\_Children}. Retaining these original columns might be redundant and could even introduce noise.
 
 Additionally, interaction features were introduced by  using one-hot encoded marital status and variables like \texttt{Kidhome} and \texttt{Teenhome}. Removing the original one-hot encoded columns can help in avoiding multicollinearity and potentially improve the performance of the models due to reduced dimensionality and complexity.
 
 \subsubsection{Scaling}
 
-Large distance between features can negatively affect the model's performance. For example, the \texttt{Income} value are in thousands, while the other variab;es, especially those that have underfone one hot encoding only range in single digits. With the use of feature scaling, this would help the models in dealing with values that are too distant in range.
+Large distance between features can negatively affect the model's performance. For example, the \texttt{Income} value are in thousands, while the other variables, especially those that have undergone one-hot encoding only range in single digits. With the use of feature scaling, this would help the models in dealing with values that are too distant in range.
 
 The use of \texttt{StandardScaler} helps prepare the dataset for many machine learning algorithms, particularly those sensistive to the scale of features, such as Support Vector Machines (SVM), and K-Nearest Neighbors (KNN). 
 

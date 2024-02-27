@@ -1,20 +1,20 @@
 \subsection{EDA}
 
-EDA provides an overview of what could be done to the data to improve the models' performance. 
+Exploroatory Data Analysis (EDA) provides an overview of what could be done to the data to improve the models' performance. 
 
 \subsubsection{Data Profiling and Malformed Entries}
 
-All of the columns and their data types can be seen at table \ref{tab:columns}. When checking for null values, all other columns are free from it other than \texttt{Income}. Upon inspection, there seems to be no connection with all the other attributes of the entries with null valued `Income`. As far as inspection and analysis goes, they seem to just be malformed entries. 
+All of the columns and their data types can be seen at table \ref{tab:columns}. When checking for null values, all other columns are free from null values other than \texttt{Income}. Upon inspection, there seems to be no connection with all the other attributes of the entries with null valued `Income`. As far as inspection and analysis goes, they seem to just be malformed entries. 
 
-\texttt{Marital\_Status} also has multiple entries that could be thought of as different, similar, or sometimes even a malformed entry. In the list of unique values for the column, the values are \texttt{Divorced, Single, Married, Together, Widow, YOLO, Alone, Absurd}. Upon listing the value counts, \texttt{Alone, YOLO, Absurd} have very few entries which could be considered as outliers. There are been thoughts of merging some of these entries to the other entries with bigger value counts; e.g. \texttt{Single} would adopt the records with \texttt{Alone}, etc. However the problem lies wherein there is no way to deduce their backgrounds and whether or not the adopting categories should take in the outliers. To further explain, there is no way to tell if a record that is \texttt{Alone} might have came from a divorced background or if they simply are single. However further explanation of the choice between data integrity and model performance would come in later in experimentations.
+\texttt{Marital\_Status} also has multiple entries that could be thought of as different, similar, or sometimes even a malformed entry. In the list of unique values for the column, the values are \texttt{Divorced, Single, Married, Together, Widow, YOLO, Alone, Absurd}. Upon listing the value counts, \texttt{Alone, YOLO, Absurd} have very few entries which could be considered as outliers. There have been thoughts of merging some of these entries to the other entries with bigger value counts; e.g. \texttt{Single} would adopt the records with \texttt{Alone}, etc. However, the problem lies wherein there is no way to deduce their backgrounds and whether or not the adopting categories should take in the outliers. To further explain, there is no way to tell if a record that is \texttt{Alone} might have came from a divorced background or if they simply are single. However, a further explanation of the choice between data integrity and model performance will be provided later in experimentations.
 
 \subsubsection{Univariate Analysis}
 
-The skew and imbalance of data attributes can be seen upon further isolated inspection. Firstly, \texttt{Income}'s central tendencies at table \ref{tab:income desc}
+The skewness and imbalance of data attributes become apparent upon further isolated inspection. Firstly, \texttt{Income}'s central tendencies at table \ref{tab:income desc}
 
 To put into perspective figure \ref{fig:income hist} shows the distance of the max value from the mean of the distribution with a skewness of 6.763487372811116
 
-Depending if the models are robust to outliers, they will be removed, experimentations will further explain these phenomena
+The decision to remove outliers depends on the models' robustness to outliers, which will be further explained in the experimentation section.
 
 \begin{table}[H]
     \caption{Income column's descriptive statistics}
@@ -43,7 +43,7 @@ Depending if the models are robust to outliers, they will be removed, experiment
     \label{fig:income hist}
 \end{figure}
 
-On the other hand for \texttt{Education} While it could be considered that the \texttt{Basic} records are outliers, removing them may misrepresent the dataset.
+For \texttt{Education}, although \texttt{Basic} records could be considered as outliers, removing them may misrepresent the dataset.
 
 % \begin{figure}[H]
 %     \centering
@@ -54,7 +54,7 @@ On the other hand for \texttt{Education} While it could be considered that the \
 
 \subsubsection{Bivariate Analysis}
 
-The relationships of attributes to each other are also worth considering to look at. Given that a lot of the analysis of these attributes would later be interpreted by the models which will be seen at the discussion.
+The relationships of attributes to each other are also worth considering to look at. Given that the analysis of these attributes will later be interpreted by the models, this will be discussed in the later sections.
 
 Looking at the scatterplot for the income per year of birth, ignoring the outliers, it seems that there seems to be an equal distribution for each year. Looking around the years 1970 to 1980, there seems to be a few entries where the recorded income is higher than the usual. 
 
@@ -102,9 +102,9 @@ Similar with the graph of the relationship of kids at home and marital status, t
 
 \subsubsection{Correlation Analysis}
 
-Using correlation analysis during the exploratory data analysis phase can be helpful for identifying relationships between variables and can inspire in creating new features. Understanding the impact of each feature to each other can help in building more efficient predicitve models.
+Using correlation analysis during the exploratory data analysis phase can be help identify relationships between variables and inspire the creation of new features. Understanding the impact of each feature to each other can help in building more efficient predicitve models.
 
-    3.1.5.1 Correlation between Income and Education. An investigation was conducted to analyze the relationship between \texttt{Income} and various \texttt{Education} levels. The \texttt{Education} was converted into distinct binary variables through one-hot encoding, so it can be used to quantify the correlation between each educational levels and \texttt{Income}. Individuals with a \texttt{Basic} education level exhibit a negative correlation (-0.200576), suggesting that this group tends to have a lower income levels compared to the baseline category. While, the \texttt{PhD} category showed a positve correlation (0.081552), indicating that these individuals tend to earn more than the baseline, implying that the higher educational attainment can correlate with higher income levels. Lastly, the \texttt{2n Cycle}, \texttt{Graduation}, and \texttt{Master} education levels showed correlations of -0.057745, 0.018935, and 0.011827, respectively, with \texttt{Income}. These figures suggests that they only have a slightly correlation with the \texttt{Income} values.
+    3.1.5.1 Correlation between Income and Education. An investigation was conducted to analyze the relationship between \texttt{Income} and various \texttt{Education} levels. The \texttt{Education} was converted into distinct binary variables through one-hot encoding, so it can be used to quantify the correlation between each educational levels and \texttt{Income}. Individuals with a \texttt{Basic} education level exhibit a negative correlation (-0.200576), suggesting that this group tends to have a lower income levels compared to the baseline category. Meanwhile, the \texttt{PhD} category showed a positve correlation (0.081552), indicating that these individuals tend to earn more than the baseline, implying that the higher educational attainment can correlate with higher income levels. Lastly, the \texttt{2n Cycle}, \texttt{Graduation}, and \texttt{Master} education levels showed correlations of -0.057745, 0.018935, and 0.011827, respectively, with \texttt{Income}. These figures suggest that they only have a slightly correlation with \texttt{Income} values.
 
     These results exhibit a weak correlation between these two variables. This observation suggests that education alone is not a strong predictor of income levels within the dataset. This can become a basis to decide in which approach is the most appropriate during the preprocessing phase.
 
