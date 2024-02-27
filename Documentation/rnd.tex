@@ -55,19 +55,23 @@ It is a bit difficult to interpret the support vectors found by the SVM. Mainly 
 
 \subsection{Naive Bayes}
 
-According to the implemented Bernoulli Naive Bayes, the log probability of a 0 response (not accepted) is -0.09726884, while a 1 response (accepted the offer) is -2.3785168. This means that the chance of accepting the offer is much lower in probability compared to rejecting it which would make sense given there is a heavy imbalance in the dataset where 1101 responses are 0 while only 113 entries have a response of 1. 
+According to the implemented Bernoulli Naive Bayes, the log probability of a 0 response (not accepted) is -0.09726884, while a 1 response (accepted the offer) is -2.3785168. This means that the chance of accepting the offer is much lower in probability compared to rejecting it which would make sense given there is a heavy imbalance in the dataset where 1101 responses are 0 while only 113 entries have a response of 1.
 
-When analyzing the log probability of a feature, the values imply the probability of a feature for a given class, i.e. $P(x_i \mid y)$. Just like the analysis of coefficients at the logistic regression and SVM models, there is too much features to be able to show them all. So, just as before, it is best to just look at the highest scoring (or alternatively, the lowest scoring) of the feature log probabilities. 
+When analyzing the log probability of a feature, the values imply the probability of a feature for a given class, i.e. $P(x_i \mid y)$. Just like the analysis of coefficients at the logistic regression and SVM models, there is too much features to be able to show them all. So, just as before, it is best to just look at the highest scoring (or alternatively, the lowest scoring) of the feature log probabilities.
 
 \begin{table}[H]
     \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X}
         \toprule
-        & $ \\
+        Feature & $Log P(x_i \mid y)$ \\
         \midrule
-        Year_Birth & -0.624380 \\
-        Year_Birth Recency & -0.641402 \\
-        NumCatalogPurchases Days_Since_Customer & -0.650023 \\
+        Year\_Birth & -0.624380 \\
+        \midrule
+        Year\_Birth Recency & -0.641402 \\
+        \midrule
+        NumCatalogPurchases \\ Days\_Since\_Customer & -0.650023 \\
+        \midrule
         NumCatalogPurchases & -0.650023 \\
+        \midrule
         Recency & -0.650023 \\
         \bottomrule
     \end{tabularx}
